@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prévention pour Tous</title>
+    <!-- Tailwind CSS pour un design adaptatif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #333;
+            /* Masquer le contenu principal par défaut pour afficher la page d'accueil en premier */
+            overflow-x: hidden;
+        }
+        .card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .card.active {
+            transform: translateY(-5px);
+            box-shadow: 0 0 0 3px #818CF8;
+        }
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Page d'accueil (welcome screen) -->
+    <div id="welcome-page" class="min-h-screen flex items-center justify-center bg-gray-100 p-4 transition-opacity duration-500">
+        <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl max-w-lg text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Prévention pour Tous</h1>
+            <p class="text-lg text-gray-600 mb-6">
+                Ce site a pour objectif de fournir des ressources claires et adaptées sur les sujets de prévention qui concernent les enfants, les adolescents et leurs parents.
+            </p>
+            <button id="access-button" class="px-8 py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 transition-colors transform hover:scale-105">
+                Accéder
+            </button>
+            <p class="mt-8 text-sm text-gray-500">
+                Site développé par la Maison de Protection des Familles des Yvelines, une unité de la
+                <a href="https://www.gendarmerie.interieur.gouv.fr/" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-bold">Gendarmerie Nationale</a>.
+            </p>
+        </div>
+    </div>
+    
+    <!-- Contenu principal du site de prévention (masqué par défaut) -->
+    <div id="main-app-content" class="hidden transition-opacity duration-500">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+            <header class="text-center mb-8 md:mb-12">
+                <h1 id="main-title" class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">Prévention pour Tous</h1>
+                <p id="main-subtitle" class="mt-2 text-lg text-gray-600">Trouvez le guide qui vous correspond pour vous informer et vous protéger.</p>
+                <button id="back-to-home" class="mt-4 px-4 py-2 bg-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 transition-colors hidden">
+                    Retour à l'accueil
+                </button>
+            </header>
+
+            <main id="main-content">
+                <!-- SECTION POUR CHOISIR SON PUBLIC -->
+                <section id="homepage-cards">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">Je suis...</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div id="card-junior" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="content-junior">
+                            <div class="text-4xl mb-3">??</div>
+                            <h3 class="text-xl font-bold text-gray-900">Pour les 6-10 ans</h3>
+                        </div>
+                        <div id="card-ado" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="content-ado">
+                            <div class="text-4xl mb-3">??????</div>
+                            <h3 class="text-xl font-bold text-gray-900">Pour les 11-13 ans</h3>
+                        </div>
+                        <div id="card-teens" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="content-teens">
+                            <div class="text-4xl mb-3">??????</div>
+                            <h3 class="text-xl font-bold text-gray-900">Pour les 14-17 ans</h3>
+                        </div>
+                        <div id="card-parents" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="content-parents">
+                            <div class="text-4xl mb-3">???????</div>
+                            <h3 class="text-xl font-bold text-gray-900">Pour les parents</h3>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONTENU POUR LES 6-10 ANS -->
+                <section id="content-junior" class="content-section">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">Pour les 6-10 ans</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div id="card-internet-junior" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-internet-junior">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Être gentil sur Internet</h3>
+                        </div>
+                        <div id="card-ecrans-junior" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-ecrans-junior">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Mon temps d'écran</h3>
+                        </div>
+                        <div id="card-corps-junior" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-corps-junior">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Mon corps, mes règles</h3>
+                        </div>
+                        <div id="card-mots-junior" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-mots-junior">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Les mots qui font mal</h3>
+                        </div>
+                    </div>
+                    <div id="subcontent-internet-junior" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-blue-600">Être gentil sur Internet ?</h4>
+                        <p class="mb-4 text-gray-700">Sur les jeux et les sites, on doit être aussi gentil que dans la vraie vie. Si quelqu'un est méchant avec toi, voici ce que tu peux faire.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Ne réponds pas !</strong> Les méchants aiment quand on répond.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Parle à un adulte !</strong> Montre-lui ce qui s'est passé. Il va t'aider.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Demande de l'aide pour bloquer.</strong> Un adulte t'aidera à bloquer la personne qui t'embête.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-ecrans-junior" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-lime-600">Mon temps d'écran ?</h4>
+                        <p class="mb-4 text-gray-700">C'est bien de jouer ou de regarder des dessins animés, mais il faut aussi faire d'autres choses. Quand on passe trop de temps devant les écrans, on peut devenir triste ou fatigué.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Parle avec tes parents</strong> pour décider du temps d'écran que tu peux avoir.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Il y a plein d'autres choses à faire !</strong> Dessiner, lire, jouer dehors avec tes amis ou faire du sport.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Fais une pause !</strong> Lève-toi, bouge, et prends l'air.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-corps-junior" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-yellow-600">Mon corps, mes règles ?</h4>
+                        <p class="mb-4 text-gray-700">Ton corps t'appartient ! Personne n'a le droit de te toucher si tu n'as pas envie. Il faut toujours dire ce que tu ressens.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">????</span><div><strong class="text-gray-800">Tu as le droit de dire NON.</strong> Pour un câlin, une photo ou un bisou.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Respecte le NON des autres.</strong> Si un ami te dit non, tu dois l'écouter.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">???????</span><div><strong class="text-gray-800">Si tu n'es pas à l'aise, dis-le à un adulte.</strong> C'est la chose la plus importante.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-mots-junior" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-red-600">Les mots qui font mal ?</h4>
+                        <p class="mb-4 text-gray-700">Quand quelqu'un t'insulte, se moque de toi ou te frappe tout le temps, c'est du harcèlement. C'est interdit et il faut en parler tout de suite.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Parle à tes parents ou à un prof !</strong> C'est la chose la plus courageuse à faire.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Dis "STOP !"</strong> Si tu le peux, dis-le avec une voix forte.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Tu n'es pas seul et ce n'est pas ta faute.</strong></div></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- CONTENU POUR LES 11-13 ANS -->
+                <section id="content-ado" class="content-section">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">Pour les 11-13 ans</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div id="card-cyber-ado" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-cyber-ado">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Cyber-Harcèlement</h3>
+                        </div>
+                        <div id="card-addiction-ado" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-addiction-ado">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Addiction aux Écrans</h3>
+                        </div>
+                        <div id="card-relation-ado" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-relation-ado">
+                            <div class="text-4xl mb-3">??</div>
+                            <h3 class="text-xl font-bold text-gray-900">Relation & Consentement</h3>
+                        </div>
+                        <div id="card-harcelement-ado" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-harcelement-ado">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Harcèlement & Violence</h3>
+                        </div>
+                    </div>
+                    <div id="subcontent-cyber-ado" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-indigo-600">Cyber-Harcèlement ?</h4>
+                        <p class="mb-4 text-gray-700">Le cyber-harcèlement se produit sur internet : messages méchants, rumeurs, ou photos partagées sans ton accord. C'est sérieux et personne ne devrait subir ça. Voici comment te protéger et réagir.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">N'y réponds pas !</strong> Ne rentre pas dans le jeu de la personne qui te harcèle.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Bloque la personne</strong> et signale son compte. Toutes les plateformes ont des outils pour ça.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Garde des preuves :</strong> Fais des captures d'écran et montre-les à un adulte en qui tu as confiance (parents, profs...).</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-addiction-ado" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-teal-600">Addiction aux Écrans ?</h4>
+                        <p class="mb-4 text-gray-700">Les écrans, c'est super, mais quand on ne peut plus s'en passer au point que ça nous rende triste ou nous empêche de faire autre chose, il faut faire attention. Si tu te sens concerné, des solutions existent.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Parle-en à tes parents.</strong> Ils peuvent t'aider à trouver un équilibre.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Dis-toi que tu n'es pas seul !</strong> Beaucoup de jeunes ressentent la même chose.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Découvre d'autres activités cool.</strong> Le sport, l'art, voir tes amis... la vraie vie est pleine de choses à faire !</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-relation-ado" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-amber-600">Relation & Consentement ??</h4>
+                        <p class="mb-4 text-gray-700">Le consentement, c'est la base du respect. Ça veut dire que tout le monde doit être d'accord. Ton corps t'appartient, et tu as toujours le droit de décider pour toi-même.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">????</span><div><strong class="text-gray-800">Tu as le droit de dire NON.</strong> Pour un câlin, un bisou, une photo... Si tu n'as pas envie, ton "non" doit être respecté.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Respecte le NON des autres.</strong> Si quelqu'un te dit non, tu dois l'écouter.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">On ne doit rien à personne.</strong> L'amitié ou l'amour ne sont pas des raisons pour accepter quelque chose qui te met mal à l'aise.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-harcelement-ado" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-rose-600">Harcèlement & Violence ?</h4>
+                        <p class="mb-4 text-gray-700">Le harcèlement, c'est quand des moqueries, insultes ou violences se répètent exprès pour faire du mal. Personne ne mérite de vivre ça, et il faut absolument en parler pour que ça s'arrête.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Parle-en à tes parents ou à un prof !</strong> C'est la chose la plus courageuse à faire.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Dis "STOP !"</strong> Si tu te sens capable de le faire, affirme-toi clairement.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Ne garde jamais un secret qui te fait du mal.</strong> Parler, c'est le premier pas pour aller mieux.</div></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- CONTENU POUR LES 14-17 ANS -->
+                <section id="content-teens" class="content-section">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">Pour les 14-17 ans</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div id="card-cyber-teens" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-cyber-teens">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Cyber-Harcèlement & Réseaux</h3>
+                        </div>
+                        <div id="card-addiction-teens" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-addiction-teens">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Santé Mentale & Bien-être Digital</h3>
+                        </div>
+                        <div id="card-relation-teens" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-relation-teens">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Relation & Consentement</h3>
+                        </div>
+                        <div id="card-harcelement-teens" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-harcelement-teens">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Harcèlement, Violence & Intimidation</h3>
+                        </div>
+                    </div>
+                    <div id="subcontent-cyber-teens" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-indigo-600">Cyber-Harcèlement & Réseaux ?</h4>
+                        <p class="mb-4 text-gray-700">Messages de haine, rumeurs, photos ou vidéos partagées sans ton accord... Le cyber-harcèlement est une infraction. Voici des étapes concrètes pour te protéger et obtenir de l'aide.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Ne réponds jamais aux messages.</strong> Cela ne fait qu'encourager l'harceleur.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Bloque la personne immédiatement</strong> et signale son compte à la plateforme.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Archive des preuves.</strong> Fais des captures d'écran des messages ou publications pour les montrer à un adulte de confiance ou aux autorités si nécessaire.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-addiction-teens" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-teal-600">Santé Mentale & Bien-être Digital ?</h4>
+                        <p class="mb-4 text-gray-700">Passer du temps en ligne, c'est normal, mais quand ça commence à avoir un impact négatif sur ton humeur, ton sommeil ou tes relations, c'est le signe qu'il faut en parler.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Apprends à identifier les signes.</strong> Irritabilité, manque d'intérêt pour les autres activités, sommeil perturbé, anxiété...</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Établis des limites claires.</strong> Planifie des moments "sans écran" et cherche d'autres activités.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?????</span><div><strong class="text-gray-800">Parle-en à quelqu'un.</strong> Un ami, un parent, un professionnel de santé. Tu n'as pas à gérer ça seul.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-relation-teens" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-amber-600">Relation & Consentement ?</h4>
+                        <p class="mb-4 text-gray-700">Le consentement est la base de toute relation saine, qu'elle soit amicale, amoureuse ou sexuelle. Il doit être libre, enthousiaste et peut être retiré à tout moment.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">????</span><div><strong class="text-gray-800">Non, c'est non.</strong> Que ce soit un "non" explicite ou un silence. Le consentement ne se présume pas.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Le consentement doit être mutuel et explicite.</strong> Il doit être donné clairement et sans aucune pression.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Une relation doit te faire grandir.</strong> Si tu te sens mal à l'aise, manipulé ou si tu perds ta confiance en toi, c'est qu'il y a un problème.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-harcelement-teens" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-rose-600">Harcèlement, Violence & Intimidation ?</h4>
+                        <p class="mb-4 text-gray-700">Le harcèlement, l'intimidation et la violence peuvent prendre plusieurs formes, physiques ou verbales. Personne n'a le droit de t'humilier ou de te faire du mal, et tu as le droit de te défendre.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Parle-en à un adulte de confiance.</strong> Parents, profs, infirmière scolaire, coach... Leur rôle est de t'aider.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Sois un allié.</strong> Si tu es témoin de harcèlement, soutiens la victime et n'aie pas peur de dire non.</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Tu n'es jamais responsable.</strong> La violence et le harcèlement sont toujours de la faute de l'agresseur, pas de la tienne.</div></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- CONTENU POUR LES PARENTS -->
+                <section id="content-parents" class="content-section">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">Sujets importants à aborder avec vos enfants</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div id="card-cyber-parents" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-cyber-parents">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Cyber-harcèlement & Dangers en ligne</h3>
+                        </div>
+                        <div id="card-ecrans-parents" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-ecrans-parents">
+                            <div class="text-4xl mb-3">?</div>
+                            <h3 class="text-xl font-bold text-gray-900">Temps d'écran & Addiction aux jeux</h3>
+                        </div>
+                        <div id="card-dialogue-parents" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-dialogue-parents">
+                            <div class="text-4xl mb-3">??</div>
+                            <h3 class="text-xl font-bold text-gray-900">Dialogue, respect et consentement</h3>
+                        </div>
+                        <div id="card-harcelement-parents" class="card bg-white p-6 rounded-xl shadow-sm cursor-pointer" data-target="subcontent-harcelement-parents">
+                            <div class="text-4xl mb-3">?????</div>
+                            <h3 class="text-xl font-bold text-gray-900">Harcèlement scolaire & Violence</h3>
+                        </div>
+                    </div>
+                    <div id="subcontent-cyber-parents" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-indigo-600">Cyber-harcèlement & Dangers en ligne ?</h4>
+                        <p class="mb-4 text-gray-700">Il est essentiel de pouvoir identifier les signes du cyber-harcèlement chez votre enfant (changement de comportement, isolement, anxiété). Voici comment réagir de manière efficace et sereine.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Créez un espace de dialogue :</strong> Rassurez votre enfant et assurez-lui qu'il peut vous faire confiance sans craindre de jugement.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Archivez les preuves :</strong> Avant de bloquer un compte, faites des captures d'écran des messages ou publications. Elles seront essentielles si vous décidez d'engager des démarches.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Agissez avec l'école et les autorités :</strong> Le harcèlement est une infraction. En parler aux enseignants et aux forces de l'ordre est la meilleure solution pour que ça s'arrête.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-ecrans-parents" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-teal-600">Temps d'écran & Addiction aux jeux ?</h4>
+                        <p class="mb-4 text-gray-700">La frontière est mince entre usage modéré et surconsommation. L'objectif est d'établir un équilibre sain entre vie en ligne et vie hors ligne. Voici quelques repères.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Définissez des règles claires :</strong> Établissez ensemble un planning d'utilisation des écrans et fixez des zones "sans écran" (repas, chambres).</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Encouragez d'autres activités :</strong> Proposez des alternatives : lecture, jeux de société, sport, art. L'objectif est de montrer qu'il existe d'autres manières de s'épanouir.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Soyez attentifs aux signaux d'alerte :</strong> Irritabilité, manque de sommeil, isolement social... Si vous avez des doutes, n'hésitez pas à demander l'aide d'un professionnel.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-dialogue-parents" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-amber-600">Dialogue, respect et consentement ??</h4>
+                        <p class="mb-4 text-gray-700">Le consentement est la base de toutes les relations saines. Il est essentiel d'aborder ce sujet tôt pour que votre enfant sache qu'il a le droit de dire non et de faire respecter ses limites.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Parlez sans tabous :</strong> Créez un environnement où votre enfant se sent libre d'aborder les questions de son corps, des relations et des émotions.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">????</span><div><strong class="text-gray-800">Apprenez-lui à dire non :</strong> Rappelez-lui que son "non" doit être respecté, et que lui aussi doit respecter celui des autres, sans insister.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Soyez vous-même un modèle :</strong> Montrez l'exemple en respectant ses espaces privés, en l'écoutant, et en vous assurant que ses décisions sont prises en toute connaissance de cause.</div></li>
+                        </ul>
+                    </div>
+                    <div id="subcontent-harcelement-parents" class="content-section bg-white p-6 sm:p-8 rounded-xl shadow-md">
+                        <h4 class="text-2xl font-bold mb-4 text-rose-600">Harcèlement scolaire & Violence ?????</h4>
+                        <p class="mb-4 text-gray-700">Le harcèlement, qu'il soit physique, verbal ou psychologique, peut avoir des conséquences graves. En tant que parent, votre rôle est crucial pour détecter les signes et prendre les mesures nécessaires.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Repérez les signaux d'alerte :</strong> Baisse des résultats scolaires, anxiété, troubles du sommeil, refus d'aller à l'école...</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">??</span><div><strong class="text-gray-800">Écoutez et soutenez votre enfant :</strong> Il a besoin de savoir que vous êtes là et que vous le croyez. Ne minimisez jamais ce qu'il ressent.</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">?</span><div><strong class="text-gray-800">Agissez en collaboration :</strong> Informez les responsables de l'établissement scolaire. S'il n'y a pas de solution, tournez-vous vers la police ou la gendarmerie.</div></li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Pied de page avec les numéros d'urgence et la mention de la Gendarmerie -->
+            <footer class="mt-12 pt-8 border-t border-gray-200">
+                <div class="bg-indigo-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold text-center text-indigo-800 mb-4">Besoin d'aide ? N'hésite pas ! ?</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-bold text-lg">Harcèlement</h4>
+                            <a href="tel:3018" class="block text-3xl font-bold text-indigo-600 my-1">3018 ??</a>
+                            <p class="text-sm text-gray-600">Gratuit, anonyme et confidentiel.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-bold text-lg">Enfance en Danger</h4>
+                            <a href="tel:119" class="block text-3xl font-bold text-indigo-600 my-1">119 ?</a>
+                            <p class="text-sm text-gray-600">Disponible 24h/24, 7j/7.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-bold text-lg">Urgence</h4>
+                            <a href="tel:17" class="block text-3xl font-bold text-indigo-600 my-1">17 ?</a>
+                            <p class="text-sm text-gray-600">Police et gendarmerie.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-bold text-lg">Questions & Addictions</h4>
+                            <a href="https://filsantejeunes.com" target="_blank" class="block text-3xl font-bold text-indigo-600 my-1">Fil Santé Jeunes</a>
+                            <p class="text-sm text-gray-600">7j/7, 9h-23h.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pied de page avec la mention de la Maison de Protection des Familles et le logo de la Gendarmerie -->
+                <div class="mt-8 text-center text-gray-500 text-sm">
+                    <a href="https://www.gendarmerie.interieur.gouv.fr/" target="_blank" class="inline-block mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Gendarmerie_nationale_logo.svg/1200px-Gendarmerie_nationale_logo.svg.png" alt="Logo de la Gendarmerie nationale" class="h-16 mx-auto">
+                    </a>
+                    <p>Le site a été conçu par la Maison de Protection des Familles des Yvelines.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Éléments de la page d'accueil
+            const welcomePage = document.getElementById('welcome-page');
+            const accessButton = document.getElementById('access-button');
+            const mainAppContent = document.getElementById('main-app-content');
+
+            // Éléments du site de prévention
+            const homepageSection = document.getElementById('homepage-cards');
+            const allContentSections = document.querySelectorAll('main > section:not(#homepage-cards)');
+            const backToHomeBtn = document.getElementById('back-to-home');
+            const mainTitle = document.getElementById('main-title');
+            const mainSubtitle = document.getElementById('main-subtitle');
+
+            const initialTitle = mainTitle.textContent;
+            const initialSubtitle = mainSubtitle.textContent;
+
+            // Fonction pour afficher le site principal après le clic sur "Accéder"
+            function showMainApp() {
+                welcomePage.classList.add('opacity-0');
+                welcomePage.addEventListener('transitionend', () => {
+                    welcomePage.style.display = 'none';
+                    mainAppContent.classList.remove('hidden');
+                    mainAppContent.classList.add('opacity-100');
+                    showHomePage(); // Affiche la page d'accueil du site de prévention
+                }, { once: true });
+            }
+
+            // Gestionnaire d'événement pour le bouton "Accéder"
+            accessButton.addEventListener('click', showMainApp);
+
+            /**
+             * Affiche la section d'accueil principale du site de prévention.
+             * Masque toutes les autres sections de contenu.
+             */
+            function showHomePage() {
+                allContentSections.forEach(section => {
+                    section.style.display = 'none';
+                    section.querySelectorAll('.content-section').forEach(subSection => {
+                        subSection.style.display = 'none';
+                    });
+                });
+                homepageSection.style.display = 'block';
+                backToHomeBtn.classList.add('hidden');
+                mainTitle.textContent = initialTitle;
+                mainSubtitle.textContent = initialSubtitle;
+            }
+
+            /**
+             * Affiche une section de contenu principale (ex: pour les 6-10 ans).
+             * @param {string} targetId L'ID de la section à afficher.
+             */
+            function showMainContent(targetId) {
+                homepageSection.style.display = 'none';
+                allContentSections.forEach(section => section.style.display = 'none');
+                
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                    const cardElement = document.querySelector(`[data-target="${targetId}"]`);
+                    if (cardElement) {
+                        mainTitle.textContent = cardElement.querySelector('h3').textContent;
+                        mainSubtitle.textContent = "Cliquez sur une rubrique pour en savoir plus.";
+                    }
+                    backToHomeBtn.classList.remove('hidden');
+                }
+            }
+
+            /**
+             * Affiche une sous-section de contenu (ex: Être gentil sur Internet).
+             * @param {string} targetId L'ID de la sous-section à afficher.
+             */
+            function showSubContent(targetId) {
+                const parentSection = document.getElementById(targetId).parentElement;
+                
+                parentSection.querySelectorAll('.content-section').forEach(subSection => {
+                    subSection.style.display = 'none';
+                });
+
+                const targetContent = document.getElementById(targetId);
+                if (targetContent) {
+                    targetContent.style.display = 'block';
+                }
+            }
+
+            // Gestion des clics sur les cartes de la page d'accueil du site de prévention
+            homepageSection.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', function () {
+                    const targetId = this.dataset.target;
+                    showMainContent(targetId);
+                });
+            });
+
+            // Gestion des clics sur les cartes des sections de contenu
+            allContentSections.forEach(section => {
+                section.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('click', function () {
+                        const targetId = this.dataset.target;
+                        showSubContent(targetId);
+                    });
+                });
+            });
+
+            // Gestion du bouton de retour à l'accueil
+            backToHomeBtn.addEventListener('click', showHomePage);
+        });
+    </script>
+
+</body>
+</html>
